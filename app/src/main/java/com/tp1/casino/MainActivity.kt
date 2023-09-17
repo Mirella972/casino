@@ -3,15 +3,11 @@ package com.tp1.casino
 import android.app.Activity
 import android.content.SharedPreferences
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : Activity(), View.OnClickListener {
     private lateinit var btnConnexion: Button
@@ -36,12 +32,10 @@ class MainActivity : Activity(), View.OnClickListener {
                     val editor = prefs.edit()
                     if(!prefs.contains(nom.text.toString()) && nom.text.toString().isNotEmpty()) {
                         editor.putInt(nom.text.toString(), 15)
-                        //editor.apply()
                     }
                     editor.putString("session", nom.text.toString())
                     editor.apply()
                 } catch (e: Exception) {
-                    //TODO : message erreur
                     Log.d("validation", "nom vide")
                 }
                 intent = Intent(this@MainActivity, AccueilActivity::class.java)

@@ -101,7 +101,8 @@ class RouletteActivity : AppCompatActivity(),View.OnClickListener, RadioGroup.On
                     editor.apply()
                     Log.d("nouveau solde", "$solde")
                     if (solde <= 0){
-                        intent = Intent(this@RouletteActivity, BanqueActivity::class.java)
+                        Snackbar.make(v, "Votre solde est insuffisant.", 10).show()
+                        intent = Intent(this@RouletteActivity, AccueilActivity::class.java)
                         startActivity(intent)
                     }
                     Log.d("nombre miser", "$nbreMiser")

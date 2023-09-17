@@ -30,10 +30,9 @@ class BanqueActivity : Activity(), View.OnClickListener {
         val intent: Intent
         when (v.id){
             R.id.btn_validation_banque -> {
-                //TODO : la validation nombre
                 val editor = prefs.edit()
                 val montant = findViewById<EditText>(R.id.edit_montant).text.toString()
-                var intMontant = Integer.valueOf(montant)
+                val intMontant = Integer.valueOf(montant)
                 solde += intMontant
                 editor.putInt(session, solde)
                 editor.apply()
