@@ -32,6 +32,7 @@ class RouletteActivity : AppCompatActivity(),View.OnClickListener, RadioGroup.On
     }
 
     private fun bindViews() {
+        // Initialisation des bouttons
         nbreMiser = findViewById(R.id.editTextNumeroMiser)
         radioGroup = findViewById(R.id.radioGroup)
         radioButtonPair = findViewById(R.id.radioButtonPair)
@@ -39,9 +40,11 @@ class RouletteActivity : AppCompatActivity(),View.OnClickListener, RadioGroup.On
         btnJouer = findViewById(R.id.btn_jouer)
         mise = findViewById(R.id.editTextNumberMise)
 
+        // Définition des écoutes des bouttons
         radioGroup.setOnCheckedChangeListener(this)
         btnJouer.setOnClickListener(this)
 
+        // Récupération du SharedPreferences
         prefs = getSharedPreferences("MonFichierDeSauvegarde", MODE_PRIVATE)
         session = prefs.getString("session", "Rien").toString()
         solde = prefs.getInt(session, 0)
@@ -65,6 +68,12 @@ class RouletteActivity : AppCompatActivity(),View.OnClickListener, RadioGroup.On
         var victoire = false
         when (v.id){
             R.id.btn_jouer -> {
+                /*
+                * Gestion du jeu
+                * une mise est obligatoire
+                * le nombre miser <= 36
+                * la mise <= solde
+                * */
                 if (!nbreMiser.text.isNotEmpty() && !mise.text.isNotEmpty() && !radioButtonImpair!!.isChecked && !radioButtonPair!!.isChecked){
                     Snackbar.make(v, "La mise est obligatoire. Faites vos jeux !", Snackbar.LENGTH_LONG).show()
                 }else if (nbreMiser.text.isNotEmpty() && nbreMiser.text.toString().toInt() > 36){
@@ -96,10 +105,12 @@ class RouletteActivity : AppCompatActivity(),View.OnClickListener, RadioGroup.On
                     } else {
                         solde -= mise.text.toString().toInt()
                     }
+                    // Mettre à jour le SharedPreferences
                     val editor = prefs.edit()
                     editor.putInt(session, solde)
                     editor.apply()
                     Log.d("nouveau solde", "$solde")
+                    // Retour à l'accueil si le solde est nul
                     if (solde <= 0){
                         Snackbar.make(v, "Votre solde est insuffisant.", 10).show()
                         intent = Intent(this@RouletteActivity, AccueilActivity::class.java)
@@ -108,6 +119,7 @@ class RouletteActivity : AppCompatActivity(),View.OnClickListener, RadioGroup.On
                     Log.d("nombre miser", "$nbreMiser")
                     Log.d("gain", "$gain")
                     Log.d("solde", "$solde")
+                    // Affichage du résultat et du nouveau solde, vider les différents champs.
                     Snackbar.make(v, "Le numéro sortant est le : $nombreAleatoire. Votre solde est de $solde.", Snackbar.LENGTH_LONG).show()
                     radioButtonPair.isChecked = false
                     radioButtonImpair.isChecked = false

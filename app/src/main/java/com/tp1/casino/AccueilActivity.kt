@@ -17,20 +17,26 @@ class AccueilActivity : Activity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accueil)
 
+        // Initialisation des boutons
         btnRoulette = findViewById(R.id.btn_roulette)
         btnBanque = findViewById(R.id.btn_banque)
 
+        // Définition des écoutes des bouttons
         btnRoulette.setOnClickListener(this)
         btnBanque.setOnClickListener(this)
 
+        // Récupération du SharedPreferences
         prefs = getSharedPreferences("MonFichierDeSauvegarde", MODE_PRIVATE)
         var utilisateur = prefs.getString("session", "Rien").toString()
         var solde = prefs.getInt(utilisateur, 0)
+
+        // Affichage du nom utilisateur et de son solde
         var afficherSolde = findViewById<TextView>(R.id.textView_solde)
         afficherSolde.text = "$utilisateur - solde : $solde"
 
         Log.d("session", "donnee : $utilisateur, $solde")
 
+        // Désactivation du menu roulette si le solde est nul
         if (solde == 0){
             btnRoulette.setEnabled(false)
         }

@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Royal Clover</string>
+    <string name="nom">Your name</string>
+    <string name="solde">Your balance</string>
+    <string name="bienvenue">Welcome</string>
+    <string name="roulette_titre">Roulette</string>
+    <string name="banque_titre">Bank</string>
+    <string name="encouragement">Good luck!</string>
+    <string name="commencer">Start</string>
+    <string name="quitter">Quit</string>
+    <string name="montant_hint_banque">The amount</string>
+    <string name="valider">Submit</string>
+    <string name="texte_demande_montant">Please enter the desired amount:</string>
+    <string name="jouer">Play</string>
+    <string name="accroche_roulette">Place your bets!</string>
+    <string name="pair">Even</string>
+    <string name="impair">Odd</string>
+    <string name="nbr_miser">Bet on a number:</string>
+    <string name="nbr_mise">Your bet: </string>
+</resources>

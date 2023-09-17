@@ -16,10 +16,13 @@ class MainActivity : Activity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Initialisation du boutton
         btnConnexion = findViewById(R.id.btn_connexion)
 
+        // Définition de l'écoute du boutton
         btnConnexion.setOnClickListener(this)
 
+        // Récupération du SharedPreferences
         prefs = getSharedPreferences("MonFichierDeSauvegarde", MODE_PRIVATE)
     }
 

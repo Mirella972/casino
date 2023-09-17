@@ -17,10 +17,13 @@ class BanqueActivity : Activity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_banque)
 
+        // Initialisation du boutton
         btnValidationBanque = findViewById(R.id.btn_validation_banque)
 
+        // Définition de l'écoute du boutton
         btnValidationBanque.setOnClickListener(this)
 
+        // Récupération du SharedPreferences
         prefs = getSharedPreferences("MonFichierDeSauvegarde", MODE_PRIVATE)
         session = prefs.getString("session", "Rien").toString()
         solde = prefs.getInt(session, 0)
